@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title>Luncheon</title>
+        <link rel="stylesheet" href="css/graphite.min.css">
+        <link rel="stylesheet" href="css/jquery.mobile.css" />
+        <link rel="stylesheet" href="css/style.css" />
+	<script src="js/jquery.js"></script>
+	<script src="js/util.js"></script>
+    <script src="js/jquery.mobile.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+</head>
+<body>
+
+<!-- ======= LAUNCH page ======== -->
+<div data-role="page" id="launch">
+
+    <div data-role="content">
+        <a data-role="button" href="#list" >Find someone for lunch</a>
+        <a data-role="button" href="#settings" data-transition="slidedown">Settings</a>
+    </div><!-- /content -->
+
+</div><!-- /page -->
+
+
+<!-- ======= LIST page ========= -->
+<div data-role="page" id="list">
+    
+    <div data-role="header" data-position="fixed" data-tap-toggle="false">
+        <a href="#launch" id="list-end" data-icon="delete" data-transition="fade">End</a>
+        <h1>Luncheon</h1>
+        <a href="#" id="list-refresh" data-icon="refresh">Refresh</a>
+    </div><!-- /header -->
+
+    <div data-role="content">
+        <ul data-role="listview"></ul>
+    </div><!-- /content -->
+
+    <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+        <h4>Luncheon v<span class="meta-version"></span></h4>
+    </div><!-- /footer -->
+
+</div><!-- /page -->
+
+
+
+<!-- ======= SETUP page ======== -->
+<div data-role="page" id="setup">
+
+    <div data-role="header">
+	<h1>Welcome to Luncheon</h1>
+    </div><!-- /header -->
+
+    <div data-role="content">
+        <h3>Profile setup</h3>
+
+        <form id="form-setup" data-ajax="false">
+            <div data-role="fieldcontain">
+                <label for="nickname">Nickname:</label>
+                <input type="text" name="nickname" id="nickname" value="" />
+            </div>
+            <div data-role="fieldcontain">
+                <label for="phone">Phone #:</label>
+                <input type="tel" name="phone" id="phone" value="" />
+            </div>
+            <div data-role="fieldcontain">
+                <button type="submit" name="submit" value="submit">Save</button>
+            </div>
+        </form>
+    </div><!-- /content -->
+
+    <div data-role="footer">
+        <h4>Luncheon v<span class="meta-version"></span></h4>
+    </div><!-- /footer -->
+
+</div><!-- /page -->
+
+
+<!-- ======= SETTINGS page ======== -->
+<div data-role="page" id="settings">
+
+    <div data-role="header">
+        <a href="#launch" data-icon="arrow-u" data-transition="slideup">Back</a>
+	<h1>Settings</h1>
+    </div><!-- /header -->
+
+    <div data-role="content">
+        <form id="form-settings" data-ajax="false">
+            <div data-role="fieldcontain">
+                <label for="name">Nickname:</label>
+                <input type="text" name="nickname" id="nickname" value="" />
+            </div>
+            <div data-role="fieldcontain">
+                <label for="phone">Phone #:</label>
+                <input type="tel" name="phone" id="phone" value="" />
+            </div>
+            <div data-role="fieldcontain">
+                <label for="status">Status message:</label>
+                <input type="text" name="status" id="status" value="" />
+            </div>
+            <div data-role="fieldcontain">
+                <button type="submit" name="submit" value="submit">Save</button>
+            </div>
+        </form>
+    </div><!-- /content -->
+
+    <div data-role="footer" data-position="fixed">
+        <h4>Luncheon v<span class="meta-version"></span></h4>
+    </div><!-- /footer -->
+
+</div><!-- /page -->
+
+
+</body>
+</html>

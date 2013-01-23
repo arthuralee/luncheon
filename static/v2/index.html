@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+	<title>Luncheon</title>
+
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/pull-to-refresh.css">
+	<link rel="stylesheet" href="css/bubbling.css">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	
+	<div id="wrapper">
+
+		<div id="navbar">
+			<a id="btn-exit" href="#"></a>
+			<h1>Luncheon</h1>
+		</div>
+
+		<div id="content" class="scrollable">
+
+			<div class="pull-to-refresh">
+
+			</div>
+
+			<div id="userlist" class="wrap">
+				<h1>Looking for lunch</h1>
+				<ul>
+					<li data-tel="+14126169423">
+						<img src="https://en.gravatar.com/userimage/9085751/313ade0e7a12d3ffd72ab9cd6ca9d86c.png?size=60" width="60" height="60" alt="Arthur Lee" />
+						<h2>Arthur Lee</h2>
+						<h3>+1 (412) 616-9423</h3>
+					</li>
+					<li data-tel="+14122311101">
+						<img src="http://s3.amazonaws.com/37assets/svn/765-default-avatar.png" width="60" height="60" alt="John Doe" />
+						<h2>John Doe</h2>
+						<h3>+1 (412) 231-1101</h3>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+	</div>
+
+	<script src="js/jquery.js"></script>
+	<script src="js/hammer.js"></script>
+	<script src="js/jquery.hammer.js"></script>
+	<script src="js/jquery.plugin.pullToRefresh.js"></script>
+	<script src="js/app.js"></script>
+</body>
+</html>

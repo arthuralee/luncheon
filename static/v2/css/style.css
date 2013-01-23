@@ -1,0 +1,122 @@
+/* Lora font */
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Lora Bold'), local('Lora-Bold'), url(lora.woff) format('woff');
+}
+
+/* disable highlighting */
+* {
+	-webkit-user-select: none;
+}
+a {
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-touch-callout: none;
+}
+
+#wrapper {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-image: url(../img/bg.jpg);
+	background-size: 100%;
+	background-position: bottom;
+}
+
+#navbar {
+	background-image: url(../img/navbar-bg.png);
+	background-size: 100%;
+	background-color: black;
+
+	width: 100%;
+	height: 44px;
+}
+
+	#navbar h1 {
+		margin: 0;
+		padding-top: 5px;
+		text-align: center;
+		font-size: 25px;
+		font-family: 'Lora', serif;
+		font-weight: 700;
+		color: #4e2727;
+		text-shadow: 1px 1px #f1cece;
+	}
+
+#btn-exit {
+	position: absolute;
+	top: 7px;
+	left: 4px;
+	display: block;
+	width: 50px;
+	height: 32px;
+	background-image: url(../img/btn-exit.png);
+	background-size: 100%;
+}
+
+	#btn-exit.touched {
+		background-position: 0 32px;
+	}
+
+#content {
+
+}
+
+#content .wrap {
+	padding: 15px 0;
+}
+
+#userlist h1 {
+	margin-top: 0;
+	margin-left: 10px;
+	font-family: "Helvetica", sans-serif;
+	color: #ffffff;
+	text-shadow: 1px 1px #202020;
+	font-size: 14px;
+	text-transform: uppercase;
+}
+
+	#userlist ul {
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		box-shadow: 0 5px 20px rgba(25,25,25,0.2);
+	}
+
+		#userlist ul li:first-child {
+			border-top: 1px solid rgba(200,200,200,0.5);
+		}
+
+		#userlist ul li {
+			overflow: auto;
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(245,210,210,0.25)), color-stop(100%,rgba(255,255,255,0.05)));
+			border-bottom: 1px solid rgba(200,200,200,0.5);
+		}
+
+			#userlist ul li.touched {
+				background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(130,80,80,0.35)), color-stop(100%,rgba(60,60,60,0.1)));
+			}
+
+		#userlist ul li img {
+			float: left;
+			margin-right: 10px;
+		}
+
+		#userlist h2, #userlist h3 {
+			font-family: "Helvetica", sans-serif;
+			text-shadow: 1px 1px #505050;
+		}
+
+		#userlist h2 {
+			color: #f7f7f7;
+			font-size: 16px;
+			margin: 10px 0 0 0;
+		}
+
+		#userlist h3 {
+			color: #eaeaea;
+			font-size: 14px;
+			font-weight: normal;
+			margin: 0;
+		}
