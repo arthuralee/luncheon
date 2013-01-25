@@ -10,6 +10,7 @@ var allowCrossDomain = function(req, res, next) {
     res.header('Access-Control-Allow-Methods', 'PUT,GET,POST,DELETE,OPTIONS');
     res.header('Access-Control-Allow-Headers', 'Content-Type,X-Requested-With');
     next();
+    //A
 }
 
 // Config
@@ -102,48 +103,6 @@ app.post('/api/users/inactive', function(req, res) {
 app.get('/api/users/:id/heartbeat', function(req, res) {
 
 });
-
-/*
-// Get a single todo
-app.get('/user/:id', function (req, res) {
-	// pattern matches /todos/*
-	// given id is passed to req.params.id
-	return TodoModel.findById(req.params.id, function(err, todo) {
-		res.send(todo);
-	});
-});
-
-// Add a todo
-app.post('/todos', function (req,res) {
-	var todo = new TodoModel({
-		desc: req.body.desc
-	});
-
-	// save to mongodb
-	todo.save();
-
-	// useful so client gets server generated stuff like IDs
-	return res.send(todo);
-});
-
-// Delete a todo
-app.delete('/todos/:id', function(req, res) {
-	return TodoModel.findById(req.params.id, function(err, todo){
-		return todo.remove(function(err) {
-			return res.send('');
-		});
-	});
-});
-
-// Editing a todo
-app.put('/todos/:id', function(req, res) {
-	return TodoModel.findById(req.params.id, function(err, todo) {
-		todo.desc = req.body.desc;
-		todo.save();
-		return res.send(todo);
-	});
-});
-*/
 
 // Launch server
 app.listen(8000);
