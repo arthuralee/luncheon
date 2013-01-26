@@ -1,6 +1,8 @@
 var express = require("express");
 var path = require("path");
-var mongoose = require('mongoose');
+var mongo = require("mongodb");
+var Db = mongo.Db;
+var BSON = mongo.BSONPure;
 var app = express();
 
 // CORS Middleware that sends HTTP headers with every request
@@ -10,7 +12,6 @@ var allowCrossDomain = function(req, res, next) {
     res.header('Access-Control-Allow-Methods', 'PUT,GET,POST,DELETE,OPTIONS');
     res.header('Access-Control-Allow-Headers', 'Content-Type,X-Requested-With');
     next();
-    //A
 }
 
 // Config
@@ -26,78 +27,72 @@ app.configure(function () {
 
 // Database
 // mongodb://host/dbname
-mongoose.connect('mongodb://localhost/luncheon');
-
-// New mongoose schema to create our Todo model
-var Schema = mongoose.Schema;
-var User = new Schema({
-	nickname: { type: String, required: true },
-	phone: { type: Number, required: false },
-	status: { type: String, required: false },
-	loc: { type: Array, required: false },
-	active: { type: Boolean, required: true},
-	last: {type:Date, required: false}
+var db;
+Db.connect('mongodb://localhost:27017/luncheon', function (err, database){
+	if (err)
+		console.log(err);
+	db = database;
 });
-var UserModel = mongoose.model('User', User);
 
 
 // =========== ROUTES ==========
 
 // Creates a user
 app.post('/api/users', function (req,res) {
-	var user = new UserModel({
+	var user = {
 		nickname: req.body.nickname,
 		phone: req.body.phone,
 		status: req.body.status,
 		loc: req.body.loc,
-		active: false
+		active: false,
+		last: Date.now()
+	};
+	db.collection("users").insert(user, function (err, results){
+		if (err)
+			console.log(err);
 	});
-
-	// save to mongodb
-	user.save();
-
 	// useful so client gets server generated stuff like IDs
-	return res.send(user);
+	res.send(user);
 });
 
 // Get all users
 app.get('/api/users', function (req, res) {
-	return UserModel.find(function(err, users) {
-		if (err) console.log(err);
-		return res.send(users);
+	db.collection("users").find({}).toArray(function (err, userArray){
+		if (err)
+			console.log(err);
+		res.send(userArray);
 	});
 });
 
 // Get all active users
 app.get('/api/users/active', function (req, res) {
-	return UserModel.find()
-			.where('active').equals(true)
-			.where('_id').ne(req.query.id)
-			.exec(function(err, users) {
-		if (err) console.log(err);
-		return res.send(users);
+	db.collection("users").find({"active" : true, "_id" : {$ne: new BSON.ObjectID(req.query.id)}}).toArray(function (err, userArray){
+		if (err)
+			console.log(err);
+		res.send(userArray);
 	});
 });
 
 // Sets a user as active
 app.post('/api/users/active', function(req, res) {
-	return UserModel.findById(req.body.id, function(err, user) {
-		user.active = true;
-		user.loc = req.body.loc;
-		if(req.body.status) user.status = req.body.status;
-		user.last = Date.now();
-		user.save();
-		return res.send(user);
-	});
+	var userStatus = req.body.status || "";
+	db.collection("users").update({"_id" : new BSON.ObjectID(req.body.id)}, 
+									{ $set: {
+										"active" : true, 
+										"loc": req.body.loc, 
+										"status": userStatus, 
+										"last":Date.now()
+										}
+	}, function (err){
+		if (err)
+			console.log(err);
+		}
+	);
 });
 
 // Sets a user as inactive
 app.post('/api/users/inactive', function(req, res) {
-	return UserModel.findById(req.body.id, function(err, user) {
-		user.active = false;
-		user.save();
-		return res.send(user);
-	});
+	db.collection("users").update({"_id": new BSON.ObjectID(req.body.id)},	{ $set : {"active" : false}});
 });
 
 app.get('/api/users/:id/heartbeat', function(req, res) {
